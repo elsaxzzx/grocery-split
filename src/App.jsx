@@ -40,9 +40,8 @@ async function recogniseReceipt(base64, mediaType) {
 
 规则：
 - price 是商品的原始标价（正数）
-- discount 是折扣金额（正数），如有IRC/F-NET等折扣行则填入，否则为0
-- vat: 标注A的商品填"A"（酒、衣物、衣架），其余食品填"Z"
-- 折扣行本身不单独列出，合并到对应商品的discount字段
+- 折扣识别：金额后带"-A"或"-Z"（如 1.00-A）的行是上一件商品的折扣，将其填入上一件商品的discount字段，不单独列出
+- vat: 直接读取小票上该商品行末尾的字母，"A"填"A"，"Z"填"Z"
 - 分割线（Bottom of Basket、BOB Count）不要列出
 - 只输出JSON数组` }
         ]
